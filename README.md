@@ -1,24 +1,59 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- Database creation
 
-Things you may want to cover:
+```bash
+rails db create
+rails db:migrate
+```
 
-* Ruby version
+- How to run the test suite
 
-* System dependencies
+- Deployment instructions
 
-* Configuration
+## DB
 
-* Database creation
+created_at は省略
 
-* Database initialization
+```mermaid
+erDiagram
+  users ||--o{ registrations: "1人のユーザーは0以上の登録する"
+  lectures ||--o{ registrations: "授業は0以上登録される"
 
-* How to run the test suite
+ users {
+    int id pk "NOT_NULL"
+    string name "NOT_NULL"
+    string password "NOT_NULL"
+  }
 
-* Services (job queues, cache servers, search engines, etc.)
+  lectures {
+    int id pk "NOT_NULL"
+    string name "NOT_NULL"
+    string description "NOT_NULL"
+    int term "NOT_NULL"
+  }
 
-* Deployment instructions
+  registrations {
+    int id pk "NOT_NULL"
+    int user_id fk "NOT_NULL"
+    int lecture_id fk "NOT_NULL"
+  }
+```
 
-* ...
+omit
+授業を時間割のコマごとに管理する
+
+```
+  schedules {
+    int id pk "NOT_NULL"
+    int lecture_id fk "NOT_NULL"
+    int timetable_id fk "NOT_NULL"
+  }
+
+  timetables {
+    int id pk "NOT_NULL"
+    int term "NOT_NULL"
+    int day "NOT_NULL"
+    int period "NOT_NULL"
+  }
+```
