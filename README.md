@@ -57,3 +57,24 @@ omit
     int period "NOT_NULL"
   }
 ```
+
+## API
+
+### ユーザー
+
+- ログイン
+- ログアウト
+- サインアップ
+- パスワード変更
+
+### 授業
+
+- 授業一覧取得 get /lectures
+- 授業単体取得 get /lectures/:id
+
+### 授業登録
+
+- 登録した授業一覧取得 get / registrations
+- 授業登録 post / registrations
+- 授業更新 patch / registrations
+- 授業削除 delete / registrations
