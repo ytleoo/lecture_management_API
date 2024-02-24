@@ -5,6 +5,7 @@
 ```bash
 rails db create
 rails db:migrate
+rails db:seed
 ```
 
 - How to run the test suite
@@ -74,12 +75,48 @@ omit
 
 ### 授業
 
-- 授業一覧取得 get /v1/public/lectures
-- 授業単体取得 get /v1/public/lectures/:id
+<details>
+<summary>授業一覧取得 get /v1/public/lectures</summary>
+
+```json
+[
+  {
+    "id": 1,
+    "name": "テスト講義1"
+  },
+  {
+    "id": 2,
+    "name": "テスト講義2"
+  }
+]
+```
+
+</details>
+
+<details>
+<summary>授業単体取得 get /v1/public/lectures/:id</summary>
+
+```json
+{
+  "id": 1,
+  "name": "テスト講義1",
+  "description": "講義詳細"
+}
+```
+
+</details>
 
 ### 授業登録
 
-- 登録した授業一覧取得 get / registrations
-- 授業登録 post / registrations
-- 授業更新 patch / registrations
-- 授業削除 delete / registrations
+<details>
+<summary>登録した授業一覧取得 get / registrations</summary>
+</details>
+<details>
+<summary>授業登録 post / registrations</summary>
+</details>
+<details>
+<summary>授業更新 patch / registrations</summary>
+</details>
+<details>
+<summary>授業削除 delete / registrations</summary>
+</details>
