@@ -1,4 +1,4 @@
-class V1::Public::LecturesController < ApplicationController
+class Api::V1::Public::LecturesController < ApplicationController
   before_action :set_lecture, only: %i[show]
 
   # GET /lectures
