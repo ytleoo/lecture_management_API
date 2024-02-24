@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  namespace :v1, {format: 'json'} do
+  namespace :v1, { format: 'json' } do
     namespace :public do
-      resources :lectures, only: [:index, :show]
+      resources :lectures, only: %i[index show]
     end
   end
 
