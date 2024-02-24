@@ -9,7 +9,12 @@ rails db:migrate
 
 - How to run the test suite
 
-- Deployment instructions
+- Task
+  スキーマ情報書き出し
+
+```bash
+bundle exec annotate --models
+```
 
 ## DB
 
