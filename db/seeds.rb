@@ -9,6 +9,6 @@
 10.times do |n|
   Lecture.create!(
     name: "テスト講義#{n + 1}",
-    description: '講義の詳細です'
+    description: Faker::Movies::StarWars.quote
   )
 end
