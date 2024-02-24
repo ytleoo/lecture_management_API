@@ -17,6 +17,12 @@ rails db:seed
 bundle exec annotate --models
 ```
 
+- rubocop
+
+```bash
+rubocop -a
+```
+
 ## DB
 
 created_at は省略
