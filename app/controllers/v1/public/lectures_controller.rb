@@ -1,4 +1,4 @@
-class LecturesController < ApplicationController
+class V1::Public::LecturesController < ApplicationController
   before_action :set_lecture, only: %i[ show update destroy ]
 
   # GET /lectures
