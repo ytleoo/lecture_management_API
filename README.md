@@ -197,7 +197,7 @@ omit
 ### 授業
 
 <details>
-<summary>授業一覧取得 get /v1/public/lectures</summary>
+<summary>授業一覧取得 get /api/v1/public/lectures</summary>
 
 ```json
 # response
@@ -217,7 +217,7 @@ omit
 </details>
 
 <details>
-<summary>授業単体取得 get /v1/public/lectures/:id</summary>
+<summary>授業単体取得 get /api/v1/public/lectures/:id</summary>
 
 ```json
 # response
