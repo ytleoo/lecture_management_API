@@ -69,8 +69,8 @@ omit
 
 ### 授業
 
-- 授業一覧取得 get /lectures
-- 授業単体取得 get /lectures/:id
+- 授業一覧取得 get /v1/public/lectures
+- 授業単体取得 get /v1/public/lectures/:id
 
 ### 授業登録
 
