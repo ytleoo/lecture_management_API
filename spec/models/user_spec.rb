@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # == Schema Information
 #
 # Table name: users
@@ -31,12 +29,24 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_uid_and_provider      (uid,provider) UNIQUE
 #
-class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
-  include DeviseTokenAuth::Concerns::User
-  PASSWORD_REGEX = /\A[a-z0-9]+\z/i
-  validates :password, format: { with: PASSWORD_REGEX }
+require 'rails_helper'
+
+RSpec.describe User, type: :model do
+  describe 'バリデーション' do
+    context 'emailとパスワードがある場合' do
+      it '保存できる' do
+        expect(build(:user)).to be_valid
+      end
+    end
+    context 'パスワードが6文字以下の場合' do
+      it '保存できない' do
+        expect(build(:user, password: 'xxxxx')).to be_invalid
+      end
+    end
+    context 'パスワードが半角英数ではない場合' do
+      it '保存できない' do
+        expect(build(:user, password: 'ああああああ')).to be_invalid
+      end
+    end
+  end
 end
