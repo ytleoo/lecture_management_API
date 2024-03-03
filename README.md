@@ -202,16 +202,24 @@ omit
 ```json
 # response
 
-[
-  {
-    "id": 1,
-    "name": "テスト講義1"
-  },
-  {
-    "id": 2,
-    "name": "テスト講義2"
+{
+  "lectures": {
+    "first_term" [
+      {
+        "id": 1,
+        "name": "テスト講義1",
+        "term": "first_term"
+      }
+    ],
+    "second_term" [
+      {
+        "id": 2,
+        "name": "テスト講義2",
+        "term": "second_term"
+      }
+    ]
   }
-]
+}
 ```
 
 </details>
@@ -225,7 +233,8 @@ omit
 {
   "id": 1,
   "name": "テスト講義1",
-  "description": "講義詳細"
+  "description": "講義詳細",
+  "term": "first_term"
 }
 ```
 
