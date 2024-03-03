@@ -24,23 +24,21 @@ class Api::V1::RegistrationsController < ApplicationController
         render json: @registration.errors, status: :unprocessable_entity
       end
     # TODO: エラーハンドリングの共通化
-    rescue ActiveRecord::RecordNotUnique => e
-      render json: { errors: ["同じ講義が登録されています"] }, status: :unprocessable_entity
+    rescue ActiveRecord::RecordNotUnique
+      render json: { errors: ['同じ講義が登録されています'] }, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /registrations/1
   # PATCH/PUT /registrations/1.json
   def update
-    begin
-      if @registration.update!(registration_params)
-        render :show, status: :ok
-      else
-        render json: @registration.errors, status: :unprocessable_entity
-      end
-    rescue ActiveRecord::RecordNotUnique => e
-      render json: { errors: ["同じ講義が登録されています"] }, status: :unprocessable_entity
+    if @registration.update!(registration_params)
+      render :show, status: :ok
+    else
+      render json: @registration.errors, status: :unprocessable_entity
     end
+  rescue ActiveRecord::RecordNotUnique
+    render json: { errors: ['同じ講義が登録されています'] }, status: :unprocessable_entity
   end
 
   # DELETE /registrations/1
@@ -50,6 +48,7 @@ class Api::V1::RegistrationsController < ApplicationController
   end
 
   private
+
   def set_current_user
     @user = current_api_v1_user
   end

@@ -26,18 +26,19 @@ class Registration < ApplicationRecord
   validate :validate_user_registration_limit, on: :create
 
   private
+
   MAX_REGISTRATIONS_PER_TERM = 4
   def validate_user_registration_limit
-    lecture_id = self.lecture_id
-    lecture = Lecture.find_by(id: self.lecture_id)
+    lecture = Lecture.find_by(id: lecture_id)
     return unless lecture
+
     registration_term = lecture.term
 
     user_registrations = user.registrations.includes(:lecture)
     registrations_for_term = user_registrations.select { |registration| registration.lecture.term == registration_term }
 
-    if registrations_for_term.count >= MAX_REGISTRATIONS_PER_TERM
-      errors.add(:base, :invalid, message: "期毎に登録できる講座は#{MAX_REGISTRATIONS_PER_TERM}件までです")
-    end
+    return unless registrations_for_term.count >= MAX_REGISTRATIONS_PER_TERM
+
+    errors.add(:base, :invalid, message: "期毎に登録できる講座は#{MAX_REGISTRATIONS_PER_TERM}件までです")
   end
 end
