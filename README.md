@@ -203,22 +203,20 @@ omit
 # response
 
 {
-  "lectures": {
-    "first_term" [
-      {
-        "id": 1,
-        "name": "テスト講義1",
-        "term": "first_term"
-      }
-    ],
-    "second_term" [
-      {
-        "id": 2,
-        "name": "テスト講義2",
-        "term": "second_term"
-      }
-    ]
-  }
+  "first_term" [
+    {
+      "id": 1,
+      "name": "テスト講義1",
+      "term": "first_term"
+    }
+  ],
+  "second_term" [
+    {
+      "id": 2,
+      "name": "テスト講義2",
+      "term": "second_term"
+    }
+  ]
 }
 ```
 
