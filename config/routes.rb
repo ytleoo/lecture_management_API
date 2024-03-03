@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       namespace :public do
         resources :lectures, only: %i[index show]
       end
+      resources :registrations
     end
   end
 

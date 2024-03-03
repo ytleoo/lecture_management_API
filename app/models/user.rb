@@ -37,6 +37,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
-  PASSWORD_REGEX = /\A[a-z0-9]+\z/i.freeze
+  PASSWORD_REGEX = /\A[a-z0-9]+\z/i
   validates :password, format: { with: PASSWORD_REGEX }, allow_blank: true
+
+  has_many :registrations, dependent: :destroy
 end

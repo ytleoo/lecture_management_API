@@ -1,0 +1,26 @@
+# == Schema Information
+#
+# Table name: registrations
+#
+#  id         :bigint           not null, primary key
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  lecture_id :bigint
+#  user_id    :bigint
+#
+# Indexes
+#
+#  index_registrations_on_lecture_id  (lecture_id)
+#  index_registrations_on_user_id     (user_id)
+#
+# Foreign Keys
+#
+#  fk_rails_...  (lecture_id => lectures.id)
+#  fk_rails_...  (user_id => users.id)
+#
+FactoryBot.define do
+  factory :registration do
+    user_id { 1 }
+    lecture_id { 1 }
+  end
+end
