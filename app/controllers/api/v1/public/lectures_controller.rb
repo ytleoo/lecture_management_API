@@ -19,7 +19,7 @@ class Api::V1::Public::LecturesController < ApplicationController
   end
 
   # Only allow a list of trusted parameters through.
-  def lecture_params
-    params.require(:lecture).permit(:name, :description)
-  end
+  # def lecture_params
+  #   params.require(:lecture).permit(:name, :description)
+  # end
 end

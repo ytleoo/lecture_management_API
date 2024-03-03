@@ -1,1 +1,1 @@
-json.array! @lectures, :id, :name
+json.array! @lectures, :id, :name, :term
