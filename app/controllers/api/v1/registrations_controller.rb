@@ -1,10 +1,11 @@
 class Api::V1::RegistrationsController < ApplicationController
+  before_action :authenticate_api_v1_user!, :set_current_user
   before_action :set_registration, only: %i[show update destroy]
 
   # GET /registrations
   # GET /registrations.json
   def index
-    @registrations = Registration.all
+    @registrations = Registration.where(user_id: @user.id)
   end
 
   # GET /registrations/1
@@ -16,8 +17,8 @@ class Api::V1::RegistrationsController < ApplicationController
   def create
     @registration = Registration.new(registration_params)
 
-    if @registration.save
-      render :show, status: :created, location: @registration
+    if @registration.save!
+      render :show, status: :created
     else
       render json: @registration.errors, status: :unprocessable_entity
     end
@@ -26,8 +27,8 @@ class Api::V1::RegistrationsController < ApplicationController
   # PATCH/PUT /registrations/1
   # PATCH/PUT /registrations/1.json
   def update
-    if @registration.update(registration_params)
-      render :show, status: :ok, location: @registration
+    if @registration.update!(registration_params)
+      render :show, status: :ok
     else
       render json: @registration.errors, status: :unprocessable_entity
     end
@@ -40,6 +41,9 @@ class Api::V1::RegistrationsController < ApplicationController
   end
 
   private
+  def set_current_user
+    @user = current_api_v1_user
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_registration
@@ -48,6 +52,6 @@ class Api::V1::RegistrationsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def registration_params
-    params.require(:registration).permit(:user_id, :lecture_id)
+    params.require(:registration).permit(:lecture_id).merge(user_id: current_api_v1_user.id)
   end
 end
