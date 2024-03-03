@@ -5,7 +5,9 @@ class Api::V1::RegistrationsController < ApplicationController
   # GET /registrations
   # GET /registrations.json
   def index
-    @registrations = Registration.where(user_id: @user.id)
+    user_registrations = @user.registrations.includes(:lecture)
+    @first_term_registrations  = user_registrations.where(lectures: { term: :first_term })
+    @second_term_registrations = user_registrations.where(lectures: { term: :second_term })
   end
 
   # GET /registrations/1
@@ -39,12 +41,19 @@ class Api::V1::RegistrationsController < ApplicationController
     end
   rescue ActiveRecord::RecordNotUnique
     render json: { errors: ['同じ講義が登録されています'] }, status: :unprocessable_entity
+  rescue ActiveRecord::RecordInvalid => e
+    error_message = e.message.split('Errors')[1]
+    render json: { errors: [error_message] }, status: :unprocessable_entity
   end
 
   # DELETE /registrations/1
   # DELETE /registrations/1.json
   def destroy
-    @registration.destroy
+    if @registration.destroy
+      render json: { message: '削除しました' }, status: :ok
+    else
+      render json: { errors: 'データが存在しません' }, status: :not_found
+    end
   end
 
   private

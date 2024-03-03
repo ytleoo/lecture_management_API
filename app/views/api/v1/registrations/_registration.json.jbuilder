@@ -1,1 +1,1 @@
-json.extract! registration, :id, :user_id, :lecture_id
+json.extract! registration, :id, :lecture_id

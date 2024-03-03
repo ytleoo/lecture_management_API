@@ -23,7 +23,7 @@ class Registration < ApplicationRecord
   belongs_to :user
   belongs_to :lecture
 
-  validate :validate_user_registration_limit, on: :create
+  validate :validate_user_registration_limit, on: %i[create update]
 
   private
 
@@ -39,6 +39,6 @@ class Registration < ApplicationRecord
 
     return unless registrations_for_term.count >= MAX_REGISTRATIONS_PER_TERM
 
-    errors.add(:base, :invalid, message: "期毎に登録できる講座は#{MAX_REGISTRATIONS_PER_TERM}件までです")
+    errors.add(:errors, :invalid, message: "期毎に登録できる講義は#{MAX_REGISTRATIONS_PER_TERM}件までです")
   end
 end
