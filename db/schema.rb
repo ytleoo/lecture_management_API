@@ -25,6 +25,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_03_080520) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lecture_id"], name: "index_registrations_on_lecture_id"
+    t.index ["user_id", "lecture_id"], name: "index_registrations_on_user_id_and_lecture_id", unique: true
     t.index ["user_id"], name: "index_registrations_on_user_id"
   end
 

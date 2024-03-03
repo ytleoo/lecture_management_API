@@ -17,20 +17,29 @@ class Api::V1::RegistrationsController < ApplicationController
   def create
     @registration = Registration.new(registration_params)
 
-    if @registration.save!
-      render :show, status: :created
-    else
-      render json: @registration.errors, status: :unprocessable_entity
+    begin
+      if @registration.save
+        render :show, status: :created
+      else
+        render json: @registration.errors, status: :unprocessable_entity
+      end
+    # TODO: エラーハンドリングの共通化
+    rescue ActiveRecord::RecordNotUnique => e
+      render json: { errors: ["同じ講義が登録されています"] }, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /registrations/1
   # PATCH/PUT /registrations/1.json
   def update
-    if @registration.update!(registration_params)
-      render :show, status: :ok
-    else
-      render json: @registration.errors, status: :unprocessable_entity
+    begin
+      if @registration.update!(registration_params)
+        render :show, status: :ok
+      else
+        render json: @registration.errors, status: :unprocessable_entity
+      end
+    rescue ActiveRecord::RecordNotUnique => e
+      render json: { errors: ["同じ講義が登録されています"] }, status: :unprocessable_entity
     end
   end
 

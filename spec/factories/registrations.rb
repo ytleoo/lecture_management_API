@@ -10,8 +10,9 @@
 #
 # Indexes
 #
-#  index_registrations_on_lecture_id  (lecture_id)
-#  index_registrations_on_user_id     (user_id)
+#  index_registrations_on_lecture_id              (lecture_id)
+#  index_registrations_on_user_id                 (user_id)
+#  index_registrations_on_user_id_and_lecture_id  (user_id,lecture_id) UNIQUE
 #
 # Foreign Keys
 #
