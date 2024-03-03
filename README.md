@@ -258,17 +258,20 @@ omit
   "first_term": [
     {
       "id": 5,
-      "lecture_id": 5
+      "lecture_id": 5,
+      "name": "テスト講義5"
     },
     {
       "id": 14,
-      "lecture_id": 2
+      "lecture_id": 2,
+      "name": "テスト講義5"
     },
   ],
   "second_term": [
     {
       "id": 1,
-      "lecture_id": 20
+      "lecture_id": 20,
+      "name": "テスト講義5"
     },
   ]
 }
@@ -287,7 +290,8 @@ omit
 ## 200
 {
   "id": 1,
-  "lecture_id": 18
+  "lecture_id": 18,
+  "name": "テスト講義5"
 }
 
 ## 422
@@ -317,7 +321,8 @@ omit
 ## 200
 {
   "id": 1,
-  "lecture_id": 18
+  "lecture_id": 18,
+  "name": "テスト講義5"
 }
 
 ## 422
