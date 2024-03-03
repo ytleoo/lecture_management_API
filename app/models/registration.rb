@@ -22,4 +22,14 @@
 class Registration < ApplicationRecord
   belongs_to :user
   belongs_to :lecture
+
+  validate :validate_user_registration_limit, on: :create
+  private
+  MAX_REGISTRATIONS_PER_USER = 4
+  def validate_user_registration_limit
+    if user.registrations.count >= MAX_REGISTRATIONS_PER_USER
+      errors.add(:base, :invalid, message: "登録できる講座は#{MAX_REGISTRATIONS_PER_USER}件までです")
+      throw :abort
+    end
+  end
 end
