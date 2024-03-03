@@ -9,6 +9,15 @@
 10.times do |n|
   Lecture.create!(
     name: "テスト講義#{n + 1}",
-    description: Faker::Movies::StarWars.quote
+    description: Faker::Movies::StarWars.quote,
+    term: 0
+  )
+end
+
+10.times do |n|
+  Lecture.create!(
+    name: "テスト講義#{n + 1}",
+    description: Faker::Movies::StarWars.quote,
+    term: 1
   )
 end

@@ -1,1 +1,1 @@
-json.extract! lecture, :id, :name, :description
+json.extract! lecture, :id, :name, :description, :term

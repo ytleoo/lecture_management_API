@@ -4,7 +4,8 @@ class Api::V1::Public::LecturesController < ApplicationController
   # GET /lectures
   # GET /lectures.json
   def index
-    @lectures = Lecture.all
+    @first_term = Lecture.first_term
+    @second_term = Lecture.second_term
   end
 
   # GET /lectures/1
@@ -19,7 +20,7 @@ class Api::V1::Public::LecturesController < ApplicationController
   end
 
   # Only allow a list of trusted parameters through.
-  def lecture_params
-    params.require(:lecture).permit(:name, :description)
-  end
+  # def lecture_params
+  #   params.require(:lecture).permit(:name, :description)
+  # end
 end

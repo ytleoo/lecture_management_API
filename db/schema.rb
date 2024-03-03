@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_24_114650) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_03_062606) do
   create_table "lectures", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.string "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "term", default: 0, null: false
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
