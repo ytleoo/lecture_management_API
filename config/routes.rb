@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   namespace :api, { format: 'json' } do
     namespace :v1 do
       mount_devise_token_auth_for 'User', at: 'auth', controllers: {
@@ -9,6 +10,9 @@ Rails.application.routes.draw do
       end
       namespace :public do
         resources :lectures, only: %i[index show]
+      end
+      devise_scope :users do
+        resources :registrations
       end
     end
   end

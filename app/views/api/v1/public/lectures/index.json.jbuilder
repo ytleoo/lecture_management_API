@@ -4,4 +4,3 @@ end
 json.second_term do
   json.array! @second_term, :id, :name, :term
 end
-

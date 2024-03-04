@@ -1,5 +1,11 @@
 # README
 
+API baseURL<br>
+production: https://lecture-management-api.onrender.com/ <br>
+local: http://localhost:3000/
+
+## development
+
 - Database creation
 
 ```bash
@@ -201,7 +207,7 @@ omit
 
 ```json
 # response
-
+## 200
 {
   "first_term" [
     {
@@ -240,15 +246,107 @@ omit
 
 ### 授業登録
 
+※access-token,client,uid が request header に必要
+
 <details>
-<summary>登録した授業一覧取得 get / registrations</summary>
+<summary>登録した授業一覧取得 get /api/v1/registrations</summary>
+ユーザーが登録している授業が期ごとに返ります。
+
+```json
+# response
+{
+  "first_term": [
+    {
+      "id": 5,
+      "lecture_id": 5,
+      "name": "テスト講義5"
+    },
+    {
+      "id": 14,
+      "lecture_id": 2,
+      "name": "テスト講義5"
+    },
+  ],
+  "second_term": [
+    {
+      "id": 1,
+      "lecture_id": 20,
+      "name": "テスト講義5"
+    },
+  ]
+}
+```
+
 </details>
 <details>
-<summary>授業登録 post / registrations</summary>
+<summary>授業登録 post /api/v1/registrations/</summary>
+
+```json
+# request
+## body
+{"lecture_id": 18}
+
+# response
+## 200
+{
+  "id": 1,
+  "lecture_id": 18,
+  "name": "テスト講義5"
+}
+
+## 422
+{
+  "errors": [
+    "期毎に登録できる講義は4件までです",
+    "同じ講義が登録されています"
+  ]
+}
+{
+  "lecture": [
+    "を入力してください"
+  ]
+}
+```
+
 </details>
 <details>
-<summary>授業更新 patch / registrations</summary>
+<summary>授業更新 patch /api/v1/registrations/:id</summary>
+
+```json
+# request
+## body
+{"lecture_id": 18}
+
+# response
+## 200
+{
+  "id": 1,
+  "lecture_id": 18,
+  "name": "テスト講義5"
+}
+
+## 422
+{
+  "errors": [
+    "期毎に登録できる講義は4件までです",
+    "同じ講義が登録されています"
+  ]
+}
+{
+  "lecture": [
+    "を入力してください"
+  ]
+}
+```
+
 </details>
 <details>
-<summary>授業削除 delete / registrations</summary>
+<summary>授業削除 delete /api/v1/registrations/:id</summary>
+
+```json
+# response
+## 200
+No Content
+```
+
 </details>

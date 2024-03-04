@@ -31,12 +31,14 @@
 #  index_users_on_reset_password_token  (reset_password_token) UNIQUE
 #  index_users_on_uid_and_provider      (uid,provider) UNIQUE
 #
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
-  PASSWORD_REGEX = /\A[a-z0-9]+\z/i.freeze
+  PASSWORD_REGEX = /\A[a-z0-9]+\z/i
   validates :password, format: { with: PASSWORD_REGEX }, allow_blank: true
+
+  has_many :registrations, dependent: :destroy
 end

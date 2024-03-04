@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_03_03_062606) do
+ActiveRecord::Schema[7.0].define(version: 2024_03_03_080520) do
   create_table "lectures", charset: "utf8mb4", force: :cascade do |t|
     t.string "name", null: false
     t.string "description", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "term", default: 0, null: false
+  end
+
+  create_table "registrations", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "lecture_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["lecture_id"], name: "index_registrations_on_lecture_id"
+    t.index ["user_id", "lecture_id"], name: "index_registrations_on_user_id_and_lecture_id", unique: true
+    t.index ["user_id"], name: "index_registrations_on_user_id"
   end
 
   create_table "users", charset: "utf8mb4", force: :cascade do |t|
@@ -44,4 +54,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_03_03_062606) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
+  add_foreign_key "registrations", "lectures"
+  add_foreign_key "registrations", "users"
 end
