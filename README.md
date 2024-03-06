@@ -1,41 +1,24 @@
 # README
 
+講義管理システムのバックエンド
+
 API baseURL<br>
 production: https://lecture-management-api.onrender.com/ <br>
 local: http://localhost:3000/
 
-## development
+## 概要
+以下の機能のエンドポイントを提供します。
+- ユーザー登録　/ログイン、パスワード変更
+- 講義一覧取得・詳細取得(public)
+- 受講登録、更新、削除(ユーザーごと)
 
-- Database creation
-
-```bash
-rails db create
-rails db:migrate
-rails db:seed
-```
-
-- How to run the test suite
-
-```bash
-rspec spec/**/*
-```
-
-- Task
-  スキーマ情報書き出し
-
-```bash
-bundle exec annotate --models
-```
-
+## 環境
+- Ruby on Rails
+- MySQL
 - rubocop
-
-```bash
-rubocop -a
-```
+- Render / planetscale
 
 ## DB
-
-created_at は省略
 
 ```mermaid
 erDiagram
@@ -350,3 +333,34 @@ No Content
 ```
 
 </details>
+
+## development
+
+- Database creation
+
+```bash
+rails db create
+rails db:migrate
+rails db:seed
+```
+
+- How to run the test suite
+
+```bash
+rspec spec/**/*
+```
+
+- Task
+  スキーマ情報書き出し
+
+```bash
+bundle exec annotate --models
+```
+
+- rubocop
+
+```bash
+rubocop -a
+```
+
+
