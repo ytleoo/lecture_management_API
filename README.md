@@ -3,7 +3,6 @@
 講義管理システムのバックエンド
 
 API baseURL<br>
-production: https://lecture-management-api.onrender.com/ <br>
 local: http://localhost:3000/
 
 ## 概要
