@@ -15,7 +15,6 @@ local: http://localhost:3000/
 - Ruby on Rails
 - MySQL
 - rubocop
-- Render / planetscale
 
 ## DB
 
